@@ -40,5 +40,14 @@ CUDA_VISIBLE_DEVICES=6 python3 main.py --dataroot=your_data_path  --noise_dim=51
 
 ## Citation
 If you find our code helpful in your research or work please cite our paper.
+```
+@inproceedings{***,
+  title={AEGI: A Single-StreamArchitecture: AdversarialEncoder-Generator-Inference Networks},
+  author={***, ***, ***, ***, ***, ***},
+  booktitle={***},
+  pages={***},    
+  year={2021}
+}
+```
 
 **The released codes are only allowed for non-commercial use.**
