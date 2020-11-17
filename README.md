@@ -36,7 +36,7 @@ CUDA_VISIBLE_DEVICES=6 python3 main.py --dataroot=your_data_path  --noise_dim=51
 ```
 
 ## Results
-!(https://github.com/open-gan/AEGI/edit/main/AEGI_1.png)
+[![logo](https://github.com/open-gan/AEGI/edit/main/Sample/AEGI_1.png)](https://github.com/open-gan/AEGI/edit/main/Sample/AEGI_1.png)
 
 ## Citation
 If you find our code helpful in your research or work please cite our paper.
