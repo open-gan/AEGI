@@ -7,6 +7,6 @@ This code can run on single RTX2080ti for a short time to achieve the comparable
 
 ## How To Use This Code
 You will need:
-. [Pytorch](https://pytorch.org/), version 1.2.0
-. torchvision, version 0.4.0
-. numpy, opencv-python
+-. [Pytorch](https://pytorch.org/), version 1.2.0
+-. torchvision, version 0.4.0
+-. numpy, opencv-python
