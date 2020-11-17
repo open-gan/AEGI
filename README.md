@@ -1,2 +1,2 @@
 # AEGI
-Pytorch implementation for the paper "A Single-StreamArchitecture: AdversarialEncoder-Generator-Inference Networks"
+Pytorch official implementation for the paper "<font color="blue">A Single-StreamArchitecture: AdversarialEncoder-Generator-Inference Networks</font>"
