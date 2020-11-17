@@ -18,3 +18,26 @@ The default parameters for CelebA-HQ faces at 128x128, 256x256, 512x512 and 1024
  To train 128x128 celebA-HQ, put your dataset into a folder and run:
 ```
 CUDA_VISIBLE_DEVICES=6 python3 main.py --dataroot=your_data_path  --noise_dim=256  --batch_size=128  --test_batch_size=32  --nEpochs=500  --save_step=2  --channels='32, 64, 128, 256, 512'  --trainsize=29000  --input_height=128  --output_height=128  --m_plus=140  --weight_neg=0.5  --weight_rec=0.2  --weight_kl=1.  --num_vae=10  --num_gan=10 > main.log 2>&1 &
+```
+
+ To train 256x256 celebA-HQ, put your dataset into a folder and run:
+```
+CUDA_VISIBLE_DEVICES=6 python3 main.py --dataroot=your_data_path  --noise_dim=512  --batch_size=32  --test_batch_size=16  --nEpochs=500  --save_step=2  --channels='32, 64, 128, 256, 512, 512'  --trainsize=29000  --input_height=256  --output_height=256  --m_plus=300  --weight_neg=0.5  --weight_rec=0.1  --weight_kl=1.  --num_vae=10  --num_gan=10 > main.log 2>&1 &
+```
+
+ To train 512x512 celebA-HQ, put your dataset into a folder and run:
+```
+CUDA_VISIBLE_DEVICES=6 python3 main.py --dataroot=your_data_path  --noise_dim=512  --batch_size=32  --test_batch_size=16  --nEpochs=500  --save_step=2  --channels='32, 64, 128, 256, 512, 512'  --trainsize=29000  --input_height=256  --output_height=256  --m_plus=300  --weight_neg=0.5  --weight_rec=0.1  --weight_kl=1.  --num_vae=10  --num_gan=10 > main.log 2>&1 &
+```
+
+ To train 1024x1024 celebA-HQ, put your dataset into a folder and run:
+```
+CUDA_VISIBLE_DEVICES=6 python3 main.py --dataroot=your_data_path  --noise_dim=512  --batch_size=5  --test_batch_size=5  --nEpochs=500  --save_step=2  --channels='16, 32, 64, 128, 256, 512, 512, 512'  --trainsize=29000  --input_height=1024  --output_height=1024  --m_plus=240  --weight_neg=0.5  --weight_rec=0.005  --weight_kl=1.  --num_vae=10  --num_gan=10 > main.log 2>&1 &
+```
+
+## Results
+
+## Citation
+If you find our code helpful in your research or work please cite our paper.
+
+**The released codes are only allowed for non-commercial use.**
