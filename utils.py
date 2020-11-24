@@ -28,22 +28,26 @@ def record_image(writer, image_list, cur_iter, nrow):
     writer.add_image('visualization', make_grid(image_to_show, nrow=nrow), cur_iter)
 
 
-def load_model(model, pretrained, statistic=None):
+def load_model(model, ema, pretrained, statistic=None):
     # model.load_state_dict(torch.load(pretrained))
     weights = torch.load(pretrained)
+
     pretrained_dict = weights['model'].state_dict()
     model_dict = model.state_dict()
     pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
     model_dict.update(pretrained_dict)
     model.load_state_dict(model_dict)
 
+    if 'ema_shadow' in weights.keys():
+        ema.shadow = weights['ema_shadow']
+
     if statistic is not None:
         statistic['mu'] = weights['statistic']['mu']
         statistic['var'] = weights['statistic']['var']
 
 
-def save_checkpoint(model, epoch, iteration, statistic, prefix=""):
-    state = {'model': model, 'statistic': statistic}
+def save_checkpoint(model, ema, epoch, iteration, statistic, prefix=""):
+    state = {'model': model, 'statistic': statistic, 'ema_shadow': ema.shadow}
     model_out_path = "model/" + prefix + "model_epoch_{}_iter_{}.pth".format(epoch, iteration)
     if not os.path.exists("model/"):
         os.makedirs("model/")
@@ -54,20 +58,39 @@ def save_checkpoint(model, epoch, iteration, statistic, prefix=""):
 
 class EMA:
     '''ExponentialMovingAverage'''
-    def __init__(self, mu):
-        self.mu = mu
+    def __init__(self, model, decay):
+        self.model = model
+        self.decay = decay
         self.shadow = {}
+        self.backup = {}
 
-    def register(self, name, val):
-        self.shadow[name] = val.clone()
+    def register(self):
+        for name, param in self.model.named_parameters():
+            if param.requires_grad:
+                self.shadow[name] = param.data.clone()
 
-    def get(self, name):
-        return self.shadow[name]
+    def update(self):
+        for name, param in self.model.named_parameters():
+            if param.requires_grad:
+                assert name in self.shadow
+                new_average = (1.0 - self.decay) * param.data + self.decay * self.shadow[name]
+                self.shadow[name] = new_average.clone()
 
-    def update(self, name, x):
-        assert name in self.shadow
-        new_average = (1.0 - self.mu) * x + self.mu * self.shadow[name]
-        self.shadow[name] = new_average.clone()
+    def apply_shadow(self):
+        for name, param in self.model.named_parameters():
+            if param.requires_grad:
+                assert name in self.shadow
+                self.backup[name] = param.data
+                # param.data = self.shadow[name]
+                param.data.copy_(self.shadow[name])
+
+    def restore(self):
+        for name, param in self.model.named_parameters():
+            if param.requires_grad:
+                assert name in self.backup
+                # param.data = self.backup[name]
+                param.data.copy_(self.backup[name])
+        self.backup = {}
 
 
 class MMD_loss(nn.Module):
