@@ -120,7 +120,7 @@ def main():
     fix_noise = torch.zeros(config.test_batch_size, config.noise_dim).normal_(0, 1).to(device)
 
     start_time = time.time()
-    cur_iter = 72998
+    cur_iter = 0
 
     def train_vae(epoch, iteration, real_images, cur_iter, statistic):
         info = "\n====> Cur_iter: [{}]: Epoch[{}]({}/{}): time: {:4.4f}: ".format(cur_iter, epoch, iteration,
