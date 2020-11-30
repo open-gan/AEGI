@@ -22,7 +22,7 @@ CUDA_VISIBLE_DEVICES=0 python3 main.py  --dataroot='/dataset/celebAHQ/celeba-128
 
  To train 256x256 celebA-HQ, put your dataset into a folder and run:
 ```
-CUDA_VISIBLE_DEVICES=6 python3 main.py --dataroot=your_data_path  --noise_dim=512  --batch_size=32  --test_batch_size=16  --nEpochs=500  --save_step=2  --channels='32, 64, 128, 256, 512, 512'  --trainsize=29000  --input_height=256  --output_height=256  --m_plus=300  --weight_neg=0.5  --weight_rec=0.1  --weight_kl=1.  --num_vae=10  --num_gan=10 > main.log 2>&1 &
+CUDA_VISIBLE_DEVICES=0 python3 main.py  --dataroot='/dataset/celebAHQ/celeba-256/'  --noise_dim=512  --batch_size=32  --test_batch_size=16  --nEpochs=500  --save_step=2  --channels='32, 64, 128, 256, 512, 512'  --trainsize=29000  --input_height=256  --output_height=256  --m_plus=300  --weight_neg=0.5  --weight_rec=0.1  --weight_kl=1.  --num_vae=10  --num_gan=10 --weight_EM=0.999 > main.log 2>&1 &
 ```
 
  To train 512x512 celebA-HQ, put your dataset into a folder and run:
