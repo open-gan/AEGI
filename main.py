@@ -65,6 +65,7 @@ def parse_arg():
     parser.add_argument("--start_epoch", default=0, type=int, help="start epoch")
     parser.add_argument("--num_vae", type=int, default=0, help="epochs for VAE pre-training")
     parser.add_argument("--num_gan", type=int, default=0, help="epochs for GAN pre-training, without ExponentialMovingAverage")
+    parser.add_argument("--weight_EM", type=float, default=0.9999, help="ExponentialMovingAverage weight")
 
     return parser.parse_known_args()[0]
 
@@ -95,7 +96,7 @@ def main():
     str_to_list = lambda x: [int(xi) for xi in x.split(',')]
     model = IntroVAE(cdim=3, hdim=config.noise_dim,
                      channels=str_to_list(config.channels), image_size=config.output_height).to(device)
-    ema = EMA(model, 0.9999)
+    ema = EMA(model, config.weight_EM)
     if config.pretrained:
         load_model(model, ema, config.pretrained)
     print(model)
