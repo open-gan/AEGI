@@ -1,5 +1,5 @@
 # AEGI
-Official implementation for the paper "***A Single-StreamArchitecture: AdversarialEncoder-Generator-Inference Networks***"
+Official implementation for the paper "***AEGIS: Adversarial Encoder-Generator-Inference Structure Networks***"
 
 ## Descriptions
 This project is a [Pytorch](https://pytorch.org/) implementation of AEGI. This paper posessed a model that combines advantages of both VAEs and GANs. It maintains the training stability of VAEs and simultaneously demonstrates strong generative capability that allows for high-resolution image synthesis.
@@ -41,8 +41,8 @@ CUDA_VISIBLE_DEVICES=0 python3 main.py  --dataroot='/dataset/celebAHQ/celeba-102
 ## Citation
 If you find our code helpful in your research or work please cite our paper.
 ```
-@inproceedings{AEGI,
-  title={A Single-StreamArchitecture: AdversarialEncoder-Generator-Inference Networks},
+@inproceedings{AEGIS,
+  title={AEGIS: Adversarial Encoder-Generator-Inference Structure Networks},
   author={*},
   booktitle={*},
   pages={*},    
