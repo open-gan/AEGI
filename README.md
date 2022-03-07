@@ -1,4 +1,4 @@
-# AEGI
+# AEGIS
 Official implementation for the paper "***AEGIS: Adversarial Encoder-Generator-Inference Structure Networks***"
 
 ## Descriptions
