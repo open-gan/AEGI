@@ -202,3 +202,4 @@ class IntroVAE(nn.Module):
             error = error.sum()
 
         return error
+    
