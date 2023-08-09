@@ -149,9 +149,9 @@ class Decoder(nn.Module):
         return y
 
 
-class IntroVAE(nn.Module):
+class AEGI(nn.Module):
     def __init__(self, cdim=3, hdim=512, channels=[64, 128, 256, 512, 512, 512], image_size=256):
-        super(IntroVAE, self).__init__()
+        super(AEGI, self).__init__()
 
         self.hdim = hdim
         self.encoder = Encoder(cdim, hdim, channels, image_size)
