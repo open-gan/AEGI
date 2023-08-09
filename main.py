@@ -94,8 +94,8 @@ def main():
     # --------------build models -------------------------
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     str_to_list = lambda x: [int(xi) for xi in x.split(',')]
-    model = IntroVAE(cdim=3, hdim=config.noise_dim,
-                     channels=str_to_list(config.channels), image_size=config.output_height).to(device)
+    model = AEGI(cdim=3, hdim=config.noise_dim, 
+                 channels=str_to_list(config.channels), image_size=config.output_height).to(device)
     ema = EMA(model, config.weight_EM)
     if config.pretrained:
         load_model(model, ema, config.pretrained)
